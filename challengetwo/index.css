@@ -1,0 +1,63 @@
+h1{
+	text-align:center;
+	font-weight:bold;
+	font-size:30px;
+	color:white;
+}
+
+body{
+	background-color:black;
+	margin-left:20%;
+	margin-right:20%;
+}
+
+p{
+	text-align:center;
+	font-size:15px;
+	font-family:verdana;
+	text-decoration:underline;
+	color:brown;
+}
+
+label{
+	font-size:15px;
+	font-family:verdana;
+	letter-spacing:2px;
+	padding-top:7px;
+	color:brown;
+	width:300px;
+	margin-top:20px;
+}
+form{
+    display:inline-block;
+    background-color:skyblue;
+	width: 80%;
+	margin-left:15%;
+	padding-left:5%;
+	padding-bottom:5%;
+	border-radius:15px;
+}
+
+legend{
+	text-align:center;
+	font-size:20;
+	letter-spacing: :2px;
+	color:white;
+}
+
+button{
+	padding:10px;
+	background-color:darkblue;
+	border-radius:10px;
+	font-family:verdana;
+	font-size:20px;
+}
+
+ul{
+	list-style-type:none;
+}
+
+input{
+	width:150px;
+	margin-bottom:20px;
+}
