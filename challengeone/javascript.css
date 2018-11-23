@@ -1,0 +1,45 @@
+body{
+    background-color:lightcyan; 
+	font-family: verdana;  
+	margin-right:10%;
+	text-align:justify;
+}
+
+h1{
+    text-decoration:bold;
+}
+
+title{  
+	list-style-type:none;
+}
+
+a{
+	text-decoration:none;
+	color:white;
+	display:inline-block;
+	background-color:brown;
+	text-align:center;
+	font-family:verdana;
+	font-size:20px;
+	padding:0px;
+}
+
+.titles{
+    float:left;
+    padding:2%;
+    font-family:times new roman;
+    display:block;
+	font-weight:700;
+	list-style-type:none;
+	margin:2%;
+	background-color:brown;
+	color:white;
+}
+
+li.hover.active{
+	color:yellow;
+}
+ body{
+     margin-left:10%;
+     margin-right:10%;
+}
