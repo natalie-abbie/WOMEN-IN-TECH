@@ -1,7 +1,17 @@
 class BankAccount:
-    def __init__(self, account_holder, ):
+    def __init__(self, account_holder,password):
          self.balance = 0
         self.account_holder = account_holder
+        self.password = password
+
+    def user_function(self):
+        print("For any action on your account: ")
+        print ("press any key as below:" + "\n"
+             + "B: Check Balance" + "\n"
+             + "D: Deposit cash" + "\n"
+             + "W: Withdraw cash" + "\n"
+             + "X: Delete account " + "\n"
+             + "E: Exit service" + "\n")
 
     def get_balance(self):
         pass
@@ -22,3 +32,4 @@ class BankAccount:
         return self.balance
 
     def close(self):
+        pass
