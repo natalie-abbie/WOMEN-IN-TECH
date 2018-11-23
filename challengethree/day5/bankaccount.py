@@ -33,5 +33,17 @@ class BankAccount:
         self.balance = self.balance - amount
         return self.balance
 
-    def close(self):
-        pass
+    #To check the user password whether as stated in self.password if wrong close account
+    def pass_check(self):
+        attempts = 2
+        while attempts > 0:
+            answer = input("Please type in your password to continue with the transaction:" + "\n")
+            if answer is self.password:
+                return True
+            else:
+                print ("That is the wrong password")
+                attempts -= 1
+                print ("{attempts} more attempt(s) remaining".format(attempts=attempts))
+
+        print ("Sorry your account is closed due to wrong password attemps.")
+        exit()
