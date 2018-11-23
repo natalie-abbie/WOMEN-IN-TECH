@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>survery form</title>
+<link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+<h1>Free CodeCamp Survey Form</h1>
+
+<form action="index.html" method="post">
+
+    <p>Let us know how we can improve freeCodeCamp</p><br>
+    <legend>Personal Information</legend><br>
+    <label for="name">*Name:</label><input type="text" id="name" name="user-name" placeholder="Enter you name" ><br>
+    <label for="email">*Email:</label><input type="=text" id="email" name="user-email" placeholder="Enter your Email"><br>
+    <label for="age">*Age: </label><input type="text" id="Age" name="user-age" placeholder="Enter your Age"><br>
+    <legend>About you</legend><br>
+    <label for="role">Which options best describes your current role?</label>
+        <select id="role" name="user-role">
+        <option disabled value>Select an option</option>
+        <option value="student">Student</option>
+        <option value="full time job">Full time job</option>
+        <option value="full time learner">Full time learner</option>
+        <option value="prefer not to say">Prefer not to say</option>
+        <option value="other">Other</option>
+        </select><br>
+        
+    <label>*How likely is that you would recommend freeCodeCamp to a friend?</label><br>
+        <input type="radio" id="definitely" value="Definitely" name="user-recommend"><label for="definitely">Definitely</label><br>
+        <input type="radio" id="maybe" value="Maybe" name="user-recommend"><label for="maybe">Maybe</label><br>
+        <input type="radio" id="not sure" value="Not sure" name="user-recommend"><label for="not sure">Not sure</label><br>
+        
+    <label for="role">What do you like most in FCC:</label>
+        <select id="fcc" name="user-fcc">    
+        <option disabled selected value>Select an option</option>
+        <option value="challenges">Challenges</option>
+        <option value="projects">Projects</option>
+        <option value="community">Community</option>
+        <option value="openSource">Open Source</option>
+      </select><br>
+    <label for="role">Things that should be improved in the future(check all that apply):</label><br>
+        <input type="checkbox" id="front-end projects" value="front-end projects" name="user-apply"><label for="front-end projects">Front-end projects</label><br>
+        <input type="checkbox" id="Back-end projects" value="Back-end projects" name="user-apply"><label for="Back-end projects">Back-end projects</label><br>
+        <input type="checkbox" id="Data Visualization" value="Data Visualization" name="user-apply"><label for="data visualization">Data visualization</label><br>
+        <input type="checkbox" id="Challenges" value="Challenges" name="user-apply"><label for="challenges">Challenges</label><br>
+        <input type="checkbox" id="Open source Community" value="Open source Community" name="user-apply"><label for="open source communnity">Open Source community</label><br>
+        <input type="checkbox" id="Glitter help rooms" value="Glitter help rooms" name="user-apply"><label for="glitter help rooms">Glitter help rooms</label><br>
+        <input type="checkbox" id="videos" value="videos" name="user-apply"><label for="videos">Videos</label><br>
+        <input type="checkbox" id="City Meetups" value="city Meetups" name="user-apply"><label for="city meetups">City Meetups</label><br>
+        <input type="checkbox" id="Wiki" value="wiki" name="user-apply"><label for="wiki">wiki</label><br>
+        <input type="checkbox" id="Forum" value="forum" name="user-apply"><label for="forum">Forum</label><br>
+        <input type="checkbox" id="Additional courses" value="additional courses" name="user-apply"><label for="additional courses">Additional courses</label><br>
+
+      <legend>Your Reaction</legend>
+        <label for="role">Any comments or suggestions?:</label>
+        <textarea id="comment" name="user-comment" placeholder="kindly drop your comment/suggestion"></textarea><br>
+
+    <button id="submit" type="submit">submit</button>
+
+
+</form>
+
+</body>
+</html>
