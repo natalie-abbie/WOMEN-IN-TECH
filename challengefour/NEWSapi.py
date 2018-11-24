@@ -2,7 +2,7 @@ import click
 import requests
 
 
-prompt_test = "Enter your news source (bbc,abc,cnn,buzzfeed)."
+prompt_test = "Enter your news source (bbc,abc,cnn,buzzfeed,cbc,focus)."
 
 @click.command()
 @click.option('--source', prompt=prompt_test)
