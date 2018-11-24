@@ -37,18 +37,18 @@ def cli(source):
         article_dict = main_dict['articles']
 
         for articles in article_dict:
-            click.echo(click.style('TITLE: ' + articles['title'], fg='red'))
+            click.echo(click.style('TITLE: ' + articles['title'], fg='blue'))
             click.echo(click.style('DESCRIPTION: ' +
-                                articles['description'], fg='blue'))
+                                articles['description'], fg='green'))
             click.echo(click.style('URL: ' +
-                                articles['url'], fg='red'))
+                                articles['url'], fg='blue'))
             click.echo('\n')
-            click.echo(click.wrap_text(articles['description'], 100))
+            click.echo(click.wrap_text(articles['description'], 150))
             click.echo('\n')
-            click.echo('-' * 100)
+            click.echo('-' * 150)
         
     else:
-        print('source not found')
+        print('source not found try searching again')
     cli()
 
 cli()
