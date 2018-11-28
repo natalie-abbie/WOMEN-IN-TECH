@@ -1,42 +1,42 @@
 import unittest
 
-from listsort import list_sort
+from list_sort import list_sort
 
 
-class listTest(unittest.TestCase):
+class listsortTest(unittest.TestCase):
 
     def test_integer_input(self):
-        self.assertEqual(list(5), 'Invalid Input')
+        self.assertEqual(list_sort(7), 'Invalid Input')
 
     def test_string_input(self):
-        self.assertEqual(list('string'), 'Invalid Input')
+        self.assertEqual(list_sort('string'), 'Invalid Input')
 
     def test_empty_list(self):
-        self.assertEqual(list([]), {'evens': [], 'odds': [], 'chars': []})
+        self.assertEqual(list_sort([]), {'evens': [], 'odds': [], 'chars': []})
 
     def test_no_string(self):
         self.assertEqual(
-            list([4, 3, 2]),
-            {'evens': [2, 4], 'odds': [3], 'chars': []}
+            list_sort([1,2,3,4,5,]),
+            {'evens': [2, 4], 'odds': [1, 3, 5], 'chars': []}
             )
 
     def test_no_even(self):
         self.assertEqual(
-            list([9, 3, 5, 1, 'd', 'a']),
-            {'evens': [], 'odds': [1, 3, 5, 9], 'chars': ['a', 'd']}
+            list_sort([1,3,5, 'a', 'b']),
+            {'evens': [], 'odds': [1, 3, 5,], 'chars': ['a', 'b']}
             )
 
     def test_no_odd(self):
         self.assertEqual(
-            list([10, 2, 8, 'c', 'f']),
-            {'evens': [2, 8, 10], 'odds': [], 'chars': ['c', 'f']}
+            list_sort([2,4, 'a', 'b']),
+            {'evens': [2, 4], 'odds': [], 'chars': ['a', 'b']}
             )
 
     def test_complete_list(self):
         self.assertEqual(
-            list([4, 9, 2, 3, 5, 1, 'd', 'a', 'c', 'f']),
-            {'evens': [2, 4], 'odds': [1, 3, 5, 9], 'chars': ['a', 'c', 'd', 'f']}
-)
+            list_sort([1,2,3,4,5, 'a', 'b']),
+            {'evens': [2, 4], 'odds': [1, 3, 5,], 'chars': ['a', 'b']}
+            )
 
 if __name__ == '__main__':
     unittest.main()
