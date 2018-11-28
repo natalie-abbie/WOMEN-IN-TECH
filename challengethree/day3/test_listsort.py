@@ -5,12 +5,6 @@ from list_sort import list_sort
 
 class listsortTest(unittest.TestCase):
 
-    def test_integer_input(self):
-        self.assertEqual(list_sort(7), 'Invalid Input')
-
-    def test_string_input(self):
-        self.assertEqual(list_sort('string'), 'Invalid Input')
-
     def test_empty_list(self):
         self.assertEqual(list_sort([]), {'evens': [], 'odds': [], 'chars': []})
 
