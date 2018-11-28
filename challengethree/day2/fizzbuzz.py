@@ -3,14 +3,17 @@ def fizzbuzz(x,y):
     
     if (x+y)%3 == 0 and (x+y)%5 == 0:
         print('fizzbuzz')
+        return fizzbuzz
 #divisiable by 5 and returns reminder 0
     
     elif (x+y)%5 == 0:
         print('buzz')
+        return buzz
 #divisiable by 3 and returns reminder 0
     
     elif (x+y)%3 == 0:
         print('fizz')
+        return fizz
 
     else:
         print(x+y)
