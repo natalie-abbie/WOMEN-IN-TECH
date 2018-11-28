@@ -13,11 +13,11 @@ def list_sort(n):
             intListodd.append(a)
 
         #checking for strings
-        elif type(a) is str:
+        else:
             strList.append(a)
         
              
-    return {"Even": intList,"odd": intListodd,"character": strList}
+    return {"evens": intList,"odds": intListodd,"chars": strList}
 
-print(list_sort([2,0,6,5,1,7,'z','a']))
+print(list_sort([1,2,3,4,5,6,'a','b','c']))
    
