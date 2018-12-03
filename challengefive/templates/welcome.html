@@ -33,5 +33,18 @@ p{
 
         <p>Welcome to the uber-eats app where you can order for any fast food and get delivered to your door</p>
         
+        <h1>PLEASE LOGIN</h1>
+        <div>
+                <form action="" method="post">
+                    <input type= "text" placeholder = "username" name="username" value = "{{request.form.username}}">
+                    <input type= "text" placeholder = "password" name="password" value = "{{request.form.password}}">
+                    <input class = "btn btn-default" type="submit" value="login">
+                </form>
+          
+            {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }}</p>
+            {% endif %}
+        </div>
+        
     </body>
 </html>
