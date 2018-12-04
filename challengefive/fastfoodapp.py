@@ -1,82 +1,63 @@
-from flask import Flask, render_template, redirect, url_for, request, session, flash
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-app.secret_key = "natalie123"
+orders = [
+    {
+        'name_of_food': 'pizza',
+        'price': '30000',
+        'quantity': '1', 
+        'restuarant': 'javas'
+    },
+    {
+        'name_of_food': 'chapati',
+        'price': '500',
+        'quantity': '1', 
+        'restuarant': 'Fiaz cafe'
+    },
 
-@app.route('/')
-def home():
-    return render_template("index.html")
+    {
+        'name_of_food': 'Rolex',
+        'price': '1000',
+        'quantity': '2', 
+        'restuarant': 'Ugaroll'
+    }
+]
 
-@app.route('/welcome')
-def Welcome():
-    return render_template("welcome.html")
+users = []
 
-@app.route('/register', methods=['POST'])
-def resgister():
-   global users_list
+def find_user():
+  password = ['password']
+  username = ['username']
+  user = [user for user in users if user['username'] == username or user['password'] == password]
+  return user
 
-   data = request.form
-   username = data['username']
-   password = data['password']
 
-   for user in users_list:
-       if user['username'] == username:
-           return jsonify({'message':'username already exists'}), 400
+@app.route('/api/v1/register', methods=['GET'])
+def register():
+    username = ['username']
+    password = ['password']
 
-   users_list.append({'username':username, 'password': password})
+    user = find_user()
+    if len(user) != 0:
+      return {'Error':'Username/Email already exists'}, 409
+    if username == "":
+      return {'Error':'Please input a valid username'}, 400
+    if password == "":
+      return {'Error':'Please input a valid password'}, 400
+    new_user = {
+            'id': len(users) + 1,
+            'username': username,
+            'password': password
+            }
+    users.append(new_user)
+    return {'users': users}, 200
 
-   return json.dumps(users_list), 200
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    error = None
-    if request.method == ' POST':
-        if request.form['username'] != 'username' or request.form['password'] != 'password':
-            error = 'Invalid credentials. please try again.'
-    else:
-        session['logged in']=True
-        flash('you were just logged in!')
-        return redirect(url_for (home))
-    return render_template('login.html', error=error)
+@app.route('/api/v1/orders', methods=['GET'])
+def get_orders():
+    return jsonify({'orders': orders})
 
-@app.route('/logout')
-def logout():
-    session.pop['logged out']
-    flash('you were just logged out!')
-    return redirect(url_for (welcome))
-
-@app.route('/orders', methods=['GET'])
-def orders():
-   global orders_list
-   # orders_list = [
-   #     {'name': 'pizza', 'price': 30000, 'quantity': 1, 'restaurant': 'cafe javas'},
-   #     {'name': 'chicken', 'price': 15000, 'quantity': 2, 'restaurant': 'KFC'}
-   # ]
-
-   return json.dumps(orders_list)
-
-@app.route('/orders', methods=['POST'])
-def ordersx():
-   global orders_list
-   # name_of_food, price, quantity, location, restaurant
-   data = request.form
-
-   price = data['price']
-   location = data['location']
-   quantity = data['quantity']
-   name = data['name']
-   restaurant = data['restaurant']
-
-   orders_list.append({
-       'name': name,
-       'price': price,
-       'location': location,
-       'quantity': quantity,
-       'restaurant': restaurant
-   })
-
-   return json.dumps(orders_list)
 
 if __name__ == '__main__':
     app.run(debug=True)
