@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, json, flash, session
+from flask import Flask, jsonify, request, json, flash
 
 app = Flask(__name__)
 
@@ -10,19 +10,18 @@ orders = []
 users = {}
 
 # routes for the api 
-
-# print("Welcome to the system. Please register or login.")
-# print("Options: register | login | exit")
-# while True:
-#     option = input("> ")
-#     if option == "login":
-#         login()
-#     elif option == "register":
-#         register()
-#     elif option == "exit":
-#         break
-#     else:
-#         print(option + " is not an option")
+@app.route('/api/v1/', methods=['POST'])
+def welcome():
+    print("To continue, Please register or login")
+    while True:
+        action = input()
+        if action == "login":
+            return "login():"
+        elif action == "register":
+            return "register():"
+        
+        else:
+            print(action + " is not an option")
 
 # Register
 @app.route('/api/v1/register', methods=['POST'])
@@ -43,7 +42,7 @@ def register():
             break
     print("Creating account...")
     users[username] = {}
-    users[username]["password"] = password
+    users["password"] = password
     print("Account has been created")
 
 # Login
@@ -82,7 +81,19 @@ def loginauth(username, password):
 #     session['logged out'] = None
 #     flash('you were just logged out!')
 #     return jsonify({'message':'successful'}) 
-
+@app.route('/api/v1/session', methods=['POST'])
+def session():
+    username={}
+    print("Welcome to your account " + username)
+    print("Options: view orders | logout")
+    
+    while True:
+        option = input(username + " > ")
+        if option == "logout":
+            print("Logging out...")
+            break
+        elif option == "view orders":
+            return "order():"
 
 @app.route('/api/v1/order', methods=['POST'])
 def order():
