@@ -1,3 +1,4 @@
+
 import unittest
 
 from account import BankAccount
@@ -6,7 +7,7 @@ from account import BankAccount
 class BankAccountTest(unittest.TestCase):
 
     def setUp(self):
-        self.account = BankAccount()
+        self.account = BankAccount(22222, "Natalie", 10)
 
     def test_newly_opened_account_has_zero_balance(self):
         self.account.open()
@@ -34,8 +35,8 @@ class BankAccountTest(unittest.TestCase):
     def test_can_withdraw_money_sequentially(self):
         self.account.open()
         self.account.deposit(100)
-        self.account.withdraw(20)
-        self.account.withdraw(80)
+        self.account.withdraw(30)
+        self.account.withdraw(90)
 
         self.assertEqual(self.account.get_balance(), 0)
 
