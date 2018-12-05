@@ -1,9 +1,9 @@
 class BankAccount():
-    def __init__(self, account_number, name, pin_number):
+    def __init__(self, account_number, account_name, password):
         self.status = "open"
         self.account_number = account_number
-        self.name = name
-        self.pin_number = pin_number
+        self.account_name = account_name
+        self.password = password
 
 #user functions that the user of the account will need when accessing the account
     def user_function(self):
