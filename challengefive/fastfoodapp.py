@@ -2,9 +2,6 @@ from flask import Flask, jsonify, request, json
 
 app = Flask(__name__)
 
-# secret key to access the session of the log in 
-app.secret_key = "natalie123"
-
 orders = []
 
 users_list = []
@@ -80,21 +77,29 @@ def session():
 def order():
    global orders
    # name_of_food, price, quantity, restaurant
+   userdata=request.get_json()
+   try:
+        name = userdata['name']
+        price = userdata['price']
+        quantity = userdata['quantity']
+        restaurant = userdata['restaurant']
+       
+   except KeyError as item:
+       return jsonify({'message':str(item)+'missing'}),400
 
-   name = ['name']
-   price = ['price']
-   quantity = ['quantity']
-   restaurant = ['restaurant']
-
-   orders.append({
+   new_order={
        'name_of_food': name,
        'price': price,
        'quantity': quantity,
        'restaurant': restaurant
-   })
+   }
 
-   return json.dumps(orders)
+   orders.append(new_order)
+   return jsonify({"message":"order created"}),201
 
+@app.route('/api/v1/order', methods=['GET'])
+def get_order():
+   return jsonify({'orders':orders}),200
 
 if __name__ == '__main__':
     app.run(debug=True)
