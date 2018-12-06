@@ -7,30 +7,18 @@ orders = []
 users_list = []
 
 # routes for the api 
-@app.route('/api/v1/', methods=['GET'])
-def welcome():
-    print("To continue, Please register or login")
-   
-    action = raw_input()
-    if action == "login":
-        return login()
-    elif action == "register":
-        return register()
-    
-    else:
-        print(action + " is not an option")
 
-# Register
 @app.route('/api/v1/register', methods=['POST'])
 def register():
+    data = request.get_json()
 
-    username =raw_input("Enter your username: ")
-    password = raw_input("Enter your password: ")
+    username = data['username']
+    password = data['password']
 
-    users= [{
+    users= {
         'username':username,
         'password':password
-        }]
+        }
     users_list.append(users)
 
     if not len(username) > 0:
@@ -40,35 +28,36 @@ def register():
         return jsonify({"message":"Password can't be blank"}), 400
         
     else:
-        return jsonify({"message":"Account created successfully",'users': users_list,}), 200
+        return jsonify({"message":"Account created successfully",'users': users_list}), 200
 
 # Login
 @app.route('/api/v1/login', methods=['POST'])
 def login():
 
-        username = raw_input("Username: ")
-        password = raw_input("Password: ")
+        data = request.get_json()
+
+        username = data['username']
+        password = data['password']
 
         if not len(username) > 0 and not len(password) > 0:
             return jsonify({"Error": "field can't be blank"}), 400
         
-        if username in users_list:
-            if password == users_list[username]["password"]:
-                print("Login successful")
-                return True
+        if password == users_list[0]["password"]:
+            return jsonify({"message":"Login successful"}), 200
 
         else:
-            return session()
+            return jsonify({"message":"invalid"})        
+
      
 @app.route('/api/v1/session', methods=['POST'])
 def session():
-    username=[]
-    print("Welcome to your account ")
-    print("Options: view orders | logout")
     
-    option = raw_input("your option: ")
+    username=[]
+    optiondata = request.get_json()
+
+    option = optiondata["your option"]
     if option == "logout":
-        return jsonify({"message": "you are logged out"})
+        return jsonify({"message": "you are logged out"}), 200
         
     elif option == "view orders":
         return order()
@@ -82,7 +71,7 @@ def order():
         name = userdata['name']
         price = userdata['price']
         quantity = userdata['quantity']
-        restaurant = userdata['restaurant']
+        location = userdata['location']
        
    except KeyError as item:
        return jsonify({'message':str(item)+'missing'}),400
@@ -91,7 +80,7 @@ def order():
        'name_of_food': name,
        'price': price,
        'quantity': quantity,
-       'restaurant': restaurant
+       'location': location
    }
 
    orders.append(new_order)
