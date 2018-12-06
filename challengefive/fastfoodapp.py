@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, json, flash
+from flask import Flask, jsonify, request, json
 
 app = Flask(__name__)
 
@@ -7,93 +7,74 @@ app.secret_key = "natalie123"
 
 orders = []
 
-users = {}
+users_list = []
 
 # routes for the api 
-@app.route('/api/v1/', methods=['POST'])
+@app.route('/api/v1/', methods=['GET'])
 def welcome():
     print("To continue, Please register or login")
-    while True:
-        action = input()
-        if action == "login":
-            return "login():"
-        elif action == "register":
-            return "register():"
-        
-        else:
-            print(action + " is not an option")
+   
+    action = raw_input()
+    if action == "login":
+        return login()
+    elif action == "register":
+        return register()
+    
+    else:
+        print(action + " is not an option")
 
 # Register
 @app.route('/api/v1/register', methods=['POST'])
 def register():
-    while True:
-        username = input("New username: ")
-        if not len(username) > 0:
-            print("Username can't be blank")
-            continue
-        else:
-            break
-    while True:
-        password = input("New password: ")
-        if not len(password) > 0:
-            print("Password can't be blank")
-            continue
-        else:
-            break
-    print("Creating account...")
-    users[username] = {}
-    users["password"] = password
-    print("Account has been created")
+
+    username =raw_input("Enter your username: ")
+    password = raw_input("Enter your password: ")
+
+    users= [{
+        'username':username,
+        'password':password
+        }]
+    users_list.append(users)
+
+    if not len(username) > 0:
+        return jsonify({"message":"Username can't be blank"}), 400
+    
+    if not len(password) > 0:
+        return jsonify({"message":"Password can't be blank"}), 400
+        
+    else:
+        return jsonify({"message":"Account created successfully",'users': users_list,}), 200
 
 # Login
 @app.route('/api/v1/login', methods=['POST'])
 def login():
-    while True:
-        username = input("Username: ")
-        if not len(username) > 0:
-            print("Username can't be blank")
+
+        username = raw_input("Username: ")
+        password = raw_input("Password: ")
+
+        if not len(username) > 0 and not len(password) > 0:
+            return jsonify({"Error": "field can't be blank"}), 400
+        
+        if username in users_list:
+            if password == users_list[username]["password"]:
+                print("Login successful")
+                return True
+
         else:
-            break
-    while True:
-        password = input("Password: ")
-        if not len(password) > 0:
-            print("Password can't be blank")
-        else:
-            break
-
-    if loginauth(username, password):
-        return session(username)
-    else:
-        print("Invalid username or password")
-
-@app.route('/api/v1/loginauth', methods=['GET'])
-# Login authorization
-def loginauth(username, password):
-    if username in users:
-        if password == users[username]["password"]:
-            print("Login successful")
-            return True
-    return False
-
-
-# @app.route('/api/v1/logout')
-# def logout():
-#     session['logged out'] = None
-#     flash('you were just logged out!')
-#     return jsonify({'message':'successful'}) 
+            return session()
+     
 @app.route('/api/v1/session', methods=['POST'])
 def session():
-    username={}
-    print("Welcome to your account " + username)
+    username=[]
+    print("Welcome to your account ")
     print("Options: view orders | logout")
     
-    while True:
-        option = input(username + " > ")
-        if option == "logout":
-            print("Logging out...")
-            break
-        elif option == "view orders":
-            return "order():"
+    option = raw_input("your option: ")
+    if option == "logout":
+        return jsonify({"message": "you are logged out"})
+        
+    elif option == "view orders":
+        return order()
 
 @app.route('/api/v1/order', methods=['POST'])
 def order():
